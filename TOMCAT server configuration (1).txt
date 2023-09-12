@@ -1,0 +1,24 @@
+deploy another instance  to configure TOMCAT server 
+	a. download the apache tomcat from official page version 8
+           wget url on to /opt dir,extract the file and rename it.
+	b.download the java 11 version ,install and set the path on .bash_profile (jre)
+		path usr/lib/jvm/java
+	c.configure tomcat
+		at the time of instance deployment open port 8080
+		go to /tomcat/bin/  run the startup.sh file
+	d.access tomcat application from browser on port 8080.(you can see the web page only cannot access the status and amanger app)
+	e.configure the below files as shown
+	     /opt/tomcat/webapps/host-manager/META-INF/context.xml(<!--    -->
+             /opt/tomcat/webapps/manager/META-INF/context.xml (<!--    -->
+	f. after making changes restart the service
+		# Restart tomcat services
+		shutdown.sh  
+		statuup.sh by gettintg instde /opt/tomcat/bin  directory
+	g.Update users information in the tomcat-users.xml file goto tomcat home directory and Add below users to conf/tomcat-users.xml file
+ <role rolename="manager-gui"/>
+ <role rolename="manager-script"/>
+ <role rolename="manager-jmx"/>
+ <role rolename="manager-status"/>
+ <user username="admin" password="admin" roles="manager-gui, manager-script, manager-jmx, manager-status"/>
+ <user username="deployers" password="deployers" roles="manager-script"/>
+ <user username="tomcat" password="tomcat" roles="manager-gui"/>.
