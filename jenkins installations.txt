@@ -1,0 +1,45 @@
+Here are the steps to install Jenkins on an AWS Linux instance:
+
+1. Log in to your AWS Linux instance using SSH.
+
+2. Update the instance's package index by running the following command:
+```
+sudo yum update -y
+```
+
+3. Install Java on the instance by running the following command:
+```
+sudo amazon-linux-extras install java-openjdk11 -y
+```
+
+4. Import the Jenkins repository key using the following command:
+```
+sudo rpm --import https://pkg.jenkins.io/redhat-stable/jenkins.io-2023.key
+```
+
+5. Add the Jenkins repository to your instance's repository list using the following command:
+```
+ sudo wget -O /etc/yum.repos.d/jenkins.repo \
+    https://pkg.jenkins.io/redhat-stable/jenkins.repo
+```
+
+6. Install Jenkins by running the following command:
+```
+sudo yum install jenkins -y
+```
+
+7. Start the Jenkins service using the following command:
+```
+sudo systemctl start jenkins
+```
+
+8. Enable the Jenkins service to start on system boot using the following command:
+```
+sudo systemctl enable jenkins
+```
+
+9. Open the Jenkins web interface by navigating to `http://<your-instance-public-ip>:8080` in your web browser. You may need to configure your security group to allow inbound traffic on port 8080.
+
+10. Follow the on-screen prompts to complete the Jenkins setup wizard.
+
+That's it! You should now have a fully functional Jenkins installation running on your AWS Linux instance.
